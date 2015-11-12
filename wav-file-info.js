@@ -1,7 +1,5 @@
 // Hi Welcome to WFI by David Jones / RackFX, LLC
 var fs = require('fs');
-
-
 var wfi = {}
 
 wfi.infoByFilename = function(filename, cb){
@@ -9,10 +7,15 @@ wfi.infoByFilename = function(filename, cb){
   var buffer = new Buffer(40);  // first 40 bytes are RIFF header
   fs.open(filename, 'r', function(status, fd) {
     if(status) return cb(status);  // error probably TODO:check this!
-    console.log('status',status);
+
     // ex error -
     // { [Error: ENOENT: no such file or directory, open './test.wav'] errno: -2, code: 'ENOENT', syscall: 'open', path: './test.wav' }
     var read_result = {}
+
+
+    // this a list of sequenced bytes in the 40 byte header. This builds the read_result object.
+
+    //  Property name / Data type / Length
     var reads = [
       ['riff_head', 'string', 4],
       ['chunk_size','integer', 4],
@@ -74,19 +77,7 @@ wfi.infoByFilename = function(filename, cb){
         header: read_result,
         stats: stats
       });
-
-
-
     }
-
   });
 }
-
-
 module.exports = wfi;
-
-
-wfi.infoByFilename('./test.wav', function(err, info){
-  console.log(err,
-    info);
-})
