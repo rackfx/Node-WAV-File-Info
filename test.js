@@ -1,6 +1,6 @@
-var wfi = require('./wav-file-info.js');
+var wavFileInfo= require('./wav-file-info.js');
 
-wfi.infoByFilename('./test.wav', function(err, info){
+wavFileInfo.infoByFilename('./test.wav', function(err, info){
   if (err) throw err ;
   console.log(err, info);
 })

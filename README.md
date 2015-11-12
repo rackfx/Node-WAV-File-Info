@@ -3,11 +3,17 @@ A lightweight module that parses WAV information data from a file into a Javascr
 
 ### Usage
 
+```
+npm install wav-file-info --save
+```
+
 ```javascript
-wfi.infoByFilename('./test.wav', function(err, info){
+var wavFileInfo = require('wav-file-info');
+
+wavFileInfo.infoByFilename('./test.wav', function(err, info){
   if (err) throw err;
   console.log(info);
-})
+});
 ```
 
 ### Result
