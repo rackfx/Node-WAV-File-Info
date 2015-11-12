@@ -5,7 +5,7 @@ A lightweight module that parses WAV information data from a file into a Javascr
 
 ```javascript
 wfi.infoByFilename('./test.wav', function(err, info){
-  if (err) THROW err;
+  if (err) throw err;
   console.log(info);
 })
 ```
