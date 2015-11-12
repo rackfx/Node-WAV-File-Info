@@ -70,7 +70,9 @@ wfi.infoByFilename = function(filename, cb){
 
       if (error) return cb({
         error : true,
-        invalid_reasons: invalid_reasons
+        invalid_reasons: invalid_reasons,
+        header: read_result,
+        stats: stats
       });
 
       cb(null, {
