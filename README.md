@@ -1,5 +1,5 @@
 # WAV File Info for Node.JS
-A lightweight module that parses WAV information data from a wav file into a Javascript Object.
+## A lightweight module that parses WAV information data from a wav file into a Javascript Object. Basically retrieves file and header meta data information from a WAV file
 
 ### Usage
 
