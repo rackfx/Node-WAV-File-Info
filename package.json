@@ -1,6 +1,6 @@
 {
   "name": "wav-file-info",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "description": "Lightweight Node.js WAV file info helper",
   "main": "wav-file-info.js",
   "scripts": {
@@ -19,7 +19,7 @@
     "Microsoft",
     "Node",
     "meta",
-    "wav meta"   
+    "wav meta"
   ],
   "author": "David Jones <null@rackfx.com> (rackfx.com)",
   "license": "ISC",
