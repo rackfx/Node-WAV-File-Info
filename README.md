@@ -15,9 +15,16 @@ wavFileInfo.infoByFilename('./test.wav', function(err, info){
   console.log(info);
 });
 ```
+#### if `err` is not null, the WAV file is valid.
 
 From the command line you can run:
-```node wfi.js <filename> ```
+
+```
+node wfi.js <filename>
+```
+
+
+
 
 ### Result
 
