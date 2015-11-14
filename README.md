@@ -16,6 +16,9 @@ wavFileInfo.infoByFilename('./test.wav', function(err, info){
 });
 ```
 
+From the command line you can run:
+```node wfi.js <filename> ```
+
 ### Result
 
 ```
