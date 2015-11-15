@@ -73,3 +73,5 @@ node wfi.js <filename>
 
 References:
  http://soundfile.sapp.org/doc/WaveFormat/
+
+ TODO: Deep scan [avg amplitude, max amplitude], fork for AIFF 
