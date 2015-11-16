@@ -5,8 +5,8 @@ var wfi = {}
 wfi.infoByFilename = function(filename, cb){
   var stats = fs.statSync(filename)
   var buffer = new Buffer(40);  // first 40 bytes are RIFF header
-  fs.open(filename, 'r', function(status, fd) {
-    if(status) return cb(status);  // error probably TODO:check this!
+  fs.open(filename, 'r', function(err, fd) {
+    if(err) return cb(err);  // error probably TODO:check this!
 
     // ex error -
     // { [Error: ENOENT: no such file or directory, open './test.wav'] errno: -2, code: 'ENOENT', syscall: 'open', path: './test.wav' }
