@@ -1,5 +1,13 @@
 # WAV File Info for Node.JS
-## A lightweight module that parses WAV information data from a wav file into a Javascript Object. Basically retrieves file and header meta data information from a WAV file
+#### A lightweight module that parses WAV information data from a wav file into a Javascript Object. Basically retrieves file and header meta data information from a WAV file.  
+
+### Used for:
+- Determining the validity of a .wav file
+- Detecting the bit depth / bit rate / bits per sample of a .wav file
+- Detecting the Sample Rate of a .wav file
+- Detecting the number of channels in a .wav file
+- Retrieving the file information, including file size, created date etc
+
 
 ### Usage
 
@@ -74,4 +82,4 @@ node wfi.js <filename>
 References:
  http://soundfile.sapp.org/doc/WaveFormat/
 
- TODO: Deep scan [avg amplitude, max amplitude], fork for AIFF 
+ TODO: Deep scan [avg amplitude, max amplitude], fork for AIFF
