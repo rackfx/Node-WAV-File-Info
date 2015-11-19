@@ -45,7 +45,7 @@ wfi.infoByFilename = function(filename, cb){
           pointer = pointer + read[2];   // pointer = pointer plus # bytes
         }
         else if(read[1]=='integer'){
-          console.log(read);
+          
           read_result[read[0]] = buffer.readUInt16LE(pointer, read[2])
           pointer = pointer + read[2];
         }
