@@ -17,7 +17,7 @@ wfi.infoByFilename = function(filename, cb){
     //  Property name / Data type / Length
     var reads = [
       ['riff_head', 'string', 4],
-      ['chunk_size','integer', 4],
+      ['chunk_size','uinteger', 4],
       ['wave_identifier', 'string', 4],
       ['fmt_identifier', 'string', 4],
       ['subchunk_size','integer',4],
@@ -45,8 +45,13 @@ wfi.infoByFilename = function(filename, cb){
           pointer = pointer + read[2];   // pointer = pointer plus # bytes
         }
         else if(read[1]=='integer'){
-          
+
           read_result[read[0]] = buffer.readUInt16LE(pointer, read[2])
+          pointer = pointer + read[2];
+        }
+        else if(read[1]=='uinteger'){
+
+          read_result[read[0]] = buffer.readInt32LE(pointer, read[2])
           pointer = pointer + read[2];
         }
         if(i < reads.length) { return read_wav()}
