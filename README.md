@@ -39,31 +39,35 @@ node wfi.js <filename>
 ```
 { header:
    { riff_head: 'RIFF',
-     chunk_size: 256660,
-     wave: 'WAVE',
-     fmt: 'fmt ',
-     subchunk_size: 18,
+     chunk_size: 1697504,
+     wave_identifier: 'WAVE',
+     fmt_identifier: 'fmt ',
+     subchunk_size: 16,
      audio_format: 1,
      num_channels: 2,
      sample_rate: 44100,
-     byte_rate: 264600,
-     block_align: 6,
-     bits_per_sample: 24 },
+     byte_rate: 45328,
+     block_align: 4,
+     bits_per_sample: 16,
+     data_identifier: 'PAD ' },
   stats:
    { dev: 16777220,
-     mode: 33188,
+     mode: 33184,
      nlink: 1,
      uid: 501,
      gid: 20,
      rdev: 0,
      blksize: 4096,
-     ino: 70857483,
-     size: 256668,
-     blocks: 504,
-     atime: Wed Nov 11 2015 22:01:34 GMT-0700 (MST),
-     mtime: Sun Nov 08 2015 22:50:00 GMT-0700 (MST),
-     ctime: Wed Nov 11 2015 19:12:15 GMT-0700 (MST),
-     birthtime: Sun Nov 08 2015 22:50:00 GMT-0700 (MST) } }
+     ino: 71128242,
+     size: 1697512,
+     blocks: 3320,
+     atime: Sun Nov 29 2015 10:13:15 GMT-0700 (MST),
+     mtime: Sat May 23 2015 12:45:00 GMT-0600 (MDT),
+     ctime: Thu Nov 12 2015 14:31:37 GMT-0700 (MST),
+     birthtime: Sat May 23 2015 12:44:55 GMT-0600 (MDT)
+  },
+  duration: 9.623038548752834
+}
 ```
 
 ### Example errors
@@ -78,6 +82,7 @@ node wfi.js <filename>
      'chunk_size does not match file size' ] }
 ```
 
+Duration is in seconds.  Stats come from Node raw fs.statSync() result.
 
 References:
  http://soundfile.sapp.org/doc/WaveFormat/
