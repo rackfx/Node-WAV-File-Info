@@ -84,8 +84,12 @@ wfi.infoByFilename = function(filename, cb){
 
       cb(null, {
         header: read_result,
-        stats: stats
+        stats: stats,
+        duration: ((stats.size - 8) / (read_result.sample_rate * read_result.num_channels * (read_result.bits_per_sample / 8)))
       });
+    }
+    function calculateDuration(o){
+      //(1697504) / (44100 * 2 * (16/8))
     }
   });
 }
