@@ -23,7 +23,7 @@ wfi.infoByFilename = function(filename, cb){
       ['subchunk_size','integer',4],
       ['audio_format','integer',2],
       ['num_channels','integer',2],
-      ['sample_rate','integer',4],
+      ['sample_rate','uinteger',4],
       ['byte_rate','integer',4],
       ['block_align','integer',2],
       ['bits_per_sample','integer',2],
@@ -85,7 +85,7 @@ wfi.infoByFilename = function(filename, cb){
       cb(null, {
         header: read_result,
         stats: stats,
-        duration: ((stats.size - 8) / (read_result.sample_rate * read_result.num_channels * (read_result.bits_per_sample / 8)))
+        duration: ((read_result.chunk_size) / (read_result.sample_rate * read_result.num_channels * (read_result.bits_per_sample / 8)))
       });
     }
   });
