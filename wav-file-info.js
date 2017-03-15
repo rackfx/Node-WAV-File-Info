@@ -69,7 +69,13 @@ wfi.infoByFilename = function(filename, cb){
       if (read_result.riff_head != "RIFF")  invalid_reasons.push("Expected \"RIFF\" string at 0" )
       if (read_result.wave_identifier != "WAVE") invalid_reasons.push("Expected \"WAVE\" string at 4")
       if (read_result.fmt_identifier != "fmt ") invalid_reasons.push("Expected \"fmt \" string at 8")
-      if ((read_result.audio_format != 1) && (read_result.audio_format != 3)) invalid_reasons.push("Unknwon format: "+read_result.audio_format)
+      if (
+        (read_result.audio_format != 1) &&        // Wav
+        (read_result.audio_format != 65534)  &&   // Extensible PCM
+        (read_result.audio_format != 2)  &&       // Wav
+        (read_result.audio_format != 22127)  &&   // Vorbis ?? (issue #11)
+        (read_result.audio_format != 3))          // Wav
+              invalid_reasons.push("Unknown format: "+read_result.audio_format)
       if ((read_result.chunk_size + 8) !== stats.size) invalid_reasons.push("chunk_size does not match file size")
       //if ((read_result.data_identifier) != "data") invalid_reasons.push("Expected data identifier at the end of the header")
 
