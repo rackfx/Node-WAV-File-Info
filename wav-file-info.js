@@ -55,7 +55,7 @@ wfi.infoByFilename = function(filename, cb){
           pointer = pointer + read[2];
         }
         if(i < reads.length) { return read_wav()}
-        else { return post_process(); }
+        else { return fs.close(fd, post_process); }
 
       }
       //console.log(i)
