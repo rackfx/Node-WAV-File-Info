@@ -70,9 +70,11 @@ wfi.infoByFilename = function(filename, cb){
       if (read_result.wave_identifier != "WAVE") invalid_reasons.push("Expected \"WAVE\" string at 4")
       if (read_result.fmt_identifier != "fmt ") invalid_reasons.push("Expected \"fmt \" string at 8")
       if (
-        (read_result.audio_format != 1) &&        // Wav
+        (read_result.audio_format != 1) &&        // Wav PCM
         (read_result.audio_format != 65534)  &&   // Extensible PCM
         (read_result.audio_format != 2)  &&       // Wav
+        (read_result.audio_format != 6) &&        // Wav ALAW
+        (read_result.audio_format != 7) &&        // Wav MULAW
         (read_result.audio_format != 22127)  &&   // Vorbis ?? (issue #11)
         (read_result.audio_format != 3))          // Wav
               invalid_reasons.push("Unknown format: "+read_result.audio_format)
