@@ -1,10 +1,11 @@
 // Hi Welcome to WFI by David Jones / RackFX, LLC
 var fs = require('fs');
 var wfi = {}
+var headerSize = 44;
 
 wfi.infoByFilename = function(filename, cb){
   var stats = fs.statSync(filename)
-  var buffer = new Buffer(40);  // first 40 bytes are RIFF header
+  var buffer = Buffer.alloc(headerSize);  // first 44 bytes are RIFF header
   fs.open(filename, 'r', function(err, fd) {
     if(err) return cb(err);  // error probably TODO:check this!
 
@@ -13,26 +14,25 @@ wfi.infoByFilename = function(filename, cb){
     var read_result = {}
 
 
-    // this a list of sequenced bytes in the 40 byte header. This builds the read_result object.
+    // this a list of sequenced bytes in the 44 byte header. This builds the read_result object.
     //  Property name / Data type / Length
     var reads = [
       ['riff_head', 'string', 4],
-      ['chunk_size','uinteger', 4],
+      ['chunk_size','uint32', 4],
       ['wave_identifier', 'string', 4],
       ['fmt_identifier', 'string', 4],
-      ['subchunk_size','integer',4],
-      ['audio_format','integer',2],
-      ['num_channels','integer',2],
-      ['sample_rate','uinteger',4],
-      ['byte_rate','integer',4],
-      ['block_align','integer',2],
-      ['bits_per_sample','integer',2],
-      //['uhm','integer',2],
+      ['sub_chunk_size','uint32', 4],
+      ['audio_format','uint16', 2],
+      ['num_channels','uint16', 2],
+      ['sample_rate','uint32', 4],
+      ['byte_rate','uint32', 4],
+      ['block_align','uint16', 2],
+      ['bits_per_sample','uint16', 2],
       ['data_identifier','string', 4],
-      //['sub_chunk2_size', 'integer', 4],
+      ['sub_chunk2_size', 'uint32', 4],
 
     ]
-    fs.read(fd, buffer, 0, 40, 0, function(err, num) {
+    fs.read(fd, buffer, 0, headerSize, 0, function(err, num) {
 
       var i=0;
       var pointer = 0;
@@ -44,14 +44,14 @@ wfi.infoByFilename = function(filename, cb){
           read_result[read[0]] = buffer.toString('ascii', pointer , pointer + read[2]);
           pointer = pointer + read[2];   // pointer = pointer plus # bytes
         }
-        else if(read[1]=='integer'){
+        else if(read[1]=='uint16'){
 
-          read_result[read[0]] = buffer.readUInt16LE(pointer, read[2])
+          read_result[read[0]] = buffer.readUInt16LE(pointer)
           pointer = pointer + read[2];
         }
-        else if(read[1]=='uinteger'){
+        else if(read[1]=='uint32'){
 
-          read_result[read[0]] = buffer.readInt32LE(pointer, read[2])
+          read_result[read[0]] = buffer.readUInt32LE(pointer)
           pointer = pointer + read[2];
         }
         if(i < reads.length) { return read_wav()}
